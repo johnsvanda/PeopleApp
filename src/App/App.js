@@ -1,9 +1,10 @@
 import Tabs from "../features/tabs/Tabs.jsx";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Tabs></Tabs>
+      <Tabs />
     </div>
   );
 }

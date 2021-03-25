@@ -1,3 +1,13 @@
+@import "../../common/utils.module.scss";
+
 .Tab {
   padding: 1rem;
+  margin: 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.activeTab {
+  border-bottom: 1px $blue solid;
+  color: $blue;
 }
