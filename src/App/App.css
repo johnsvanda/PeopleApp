@@ -40,4 +40,5 @@ button {
   margin-left: 15px;
   font-size: 25px;
   color: white;
+  cursor: pointer;
 }

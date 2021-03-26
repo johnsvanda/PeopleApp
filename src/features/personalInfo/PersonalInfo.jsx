@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { occupationsArray } from "../occupations/occupationsSlice";
+import ErrorMessage from "../../common/ErrorMessage.jsx";
 import styles from "./PersonalInfo.module.scss";
 
 const PersonalInfo = ({ store, onSubmit }) => {
@@ -22,7 +23,7 @@ const PersonalInfo = ({ store, onSubmit }) => {
               ref={register({ required: true, maxLength: 20 })}
             />
             {errors.firstName && (
-              <span role="alert">First name is required</span>
+              <ErrorMessage role="alert" message="First name is required" />
             )}
 
             <label>Last name</label>
@@ -30,7 +31,9 @@ const PersonalInfo = ({ store, onSubmit }) => {
               name="lastName"
               ref={register({ required: true, maxLength: 20 })}
             />
-            {errors.lastName && "Last name is required"}
+            {errors.lastName && (
+              <ErrorMessage role="alert" message="Last name is required" />
+            )}
           </div>
 
           <div className={styles.Occupations}>

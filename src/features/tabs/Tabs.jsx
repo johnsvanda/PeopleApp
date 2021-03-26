@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import styles from "./Tabs.module.scss";
 import Tab from "./Tab.jsx";
-import { tabsArray, defaultTabId } from "./tabsSlice";
+import PersonalInfo from "../personalInfo/PersonalInfo.jsx";
+import Skills from "../skills/Skills.jsx";
 
 const Tabs = () => {
-  const [store, setStore] = useState({ test1: "", test2: "", test3: "" });
-  const [activeTab, setActiveTab] = useState(useSelector(defaultTabId));
-  const tabs = useSelector(tabsArray);
+  const [store, setStore] = useState();
+  const [value, setValue] = React.useState(0);
+
+  const setActiveTab = (newValue) => {
+    setValue(newValue);
+  };
 
   const onSubmit = (data) => {
     setStore({
@@ -17,36 +20,46 @@ const Tabs = () => {
     console.log(data);
   };
 
-  const Navigation = () => (
-    <div className={styles.Navigation}>
-      {tabs.map(({ id, title }) => {
-        let active = activeTab === id;
-        return <Tab key={id} {...{ title, active, setActiveTab, id }}></Tab>;
-      })}
-    </div>
-  );
+  const TabsGroup = ({ children }) => {
+    return (
+      <div className={styles.TabsGroup}>
+        {React.Children.map(children, (child, id) => {
+          return React.cloneElement(child, {
+            value,
+            id,
+            setActiveTab,
+          });
+        })}
+      </div>
+    );
+  };
 
-  const Content = () => (
-    <div className={styles.Content}>
-      {tabs.map(({ content, id }) => {
-        if (id === activeTab) {
-          return (
-            <div className={styles.Container} key={id}>
-              {React.cloneElement(content, {
-                onSubmit: onSubmit,
-                store: store,
-              })}
-            </div>
-          );
-        }
-        return undefined;
-      })}
-    </div>
-  );
+  const TabPanel = ({ children, value, index }) => {
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+      >
+        {value === index && <div className={styles.TabPanel}>{children}</div>}
+      </div>
+    );
+  };
+
   return (
     <div className={styles.Tabs}>
-      <Navigation />
-      <Content />
+      <TabsGroup>
+        <Tab title="Personal Info" />
+        <Tab title="Skills" />
+      </TabsGroup>
+
+      <TabPanel value={value} index={0}>
+        <PersonalInfo onSubmit={onSubmit} store={store} />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Skills onSubmit={onSubmit} store={store} />
+      </TabPanel>
     </div>
   );
 };

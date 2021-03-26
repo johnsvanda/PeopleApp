@@ -12,7 +12,7 @@ const Skills = ({ store, onSubmit }) => {
 
   const skills = useSelector(skillsArray);
 
-  /*  const onSubmit = (data) => {
+  /*   const onSubmit = (data) => {
     const rawData = Object.values(data);
     const resultData = rawData.filter((el) => el !== "");
     console.log(resultData);
