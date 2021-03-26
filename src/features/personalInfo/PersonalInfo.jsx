@@ -5,7 +5,7 @@ import { occupationsArray } from "../occupations/occupationsSlice";
 import ErrorMessage from "../../common/ErrorMessage.jsx";
 import styles from "./PersonalInfo.module.scss";
 
-const PersonalInfo = ({ store }) => {
+const PersonalInfo = ({ store, saveToStore }) => {
   const occupations = useSelector(occupationsArray);
 
   const { register, errors, handleSubmit } = useForm({
@@ -13,6 +13,7 @@ const PersonalInfo = ({ store }) => {
   });
 
   const onSubmit = (data) => {
+    saveToStore(data);
     console.log(data);
   };
 

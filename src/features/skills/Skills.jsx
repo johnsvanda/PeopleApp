@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import styles from "./Skills.module.scss";
 import SkillInput from "./SkillInput.jsx";
 
-const Skills = ({ store }) => {
+const Skills = ({ store, saveToStore }) => {
   const { handleSubmit, register } = useForm({
     defaultValues: store,
   });
@@ -13,6 +13,7 @@ const Skills = ({ store }) => {
   const skills = useSelector(skillsArray);
 
   const onSubmit = (data) => {
+    saveToStore(data);
     const rawData = Object.values(data);
     const resultData = rawData.filter((el) => el !== "");
     console.log(resultData);

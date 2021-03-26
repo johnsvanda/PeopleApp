@@ -6,18 +6,13 @@ import Skills from "../skills/Skills.jsx";
 
 const Tabs = () => {
   const [store, setStore] = useState();
-  const [value, setValue] = React.useState(0);
+  const [value, setActiveTab] = React.useState(0);
 
-  const setActiveTab = (newValue) => {
-    setValue(newValue);
-  };
-
-  const onSubmit = (data) => {
+  const saveToStore = (data) => {
     setStore({
       ...store,
       ...data,
     });
-    console.log(data);
   };
 
   const TabsGroup = ({ children }) => {
@@ -55,10 +50,10 @@ const Tabs = () => {
       </TabsGroup>
 
       <TabPanel value={value} index={0}>
-        <PersonalInfo onSubmit={onSubmit} store={store} />
+        <PersonalInfo {...{ saveToStore, store }} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Skills onSubmit={onSubmit} store={store} />
+        <Skills {...{ saveToStore, store }} />
       </TabPanel>
     </div>
   );
