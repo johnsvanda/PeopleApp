@@ -4,12 +4,16 @@ import { useForm } from "react-hook-form";
 import { occupationsArray } from "../occupations/occupationsSlice";
 import styles from "./PersonalInfo.module.scss";
 
-const PersonalInfo = ({ store, onSubmit }) => {
+const PersonalInfo = ({ store }) => {
   const occupations = useSelector(occupationsArray);
 
   const { register, errors, handleSubmit } = useForm({
     defaultValues: store,
   });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className={styles.PersonalInfo}>
