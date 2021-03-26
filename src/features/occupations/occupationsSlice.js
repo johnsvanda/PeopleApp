@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const occupationsSlice = createSlice({
   name: "occupations",
   initialState: {
-    array: [
+    occupationsArray: [
       {
         code: "PRESIDENT",
         name: "President",
@@ -25,8 +25,6 @@ export const occupationsSlice = createSlice({
   reducers: {},
 });
 
-//export const {} = occupationsSlice.actions;
-
-export const occupationsArray = (state) => state.occupations.array;
+export const occupationsArray = (state) => state.occupations.occupationsArray;
 
 export default occupationsSlice.reducer;

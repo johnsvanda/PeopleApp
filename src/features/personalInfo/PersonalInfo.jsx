@@ -4,42 +4,54 @@ import { useForm } from "react-hook-form";
 import { occupationsArray } from "../occupations/occupationsSlice";
 import styles from "./PersonalInfo.module.scss";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ store, onSubmit }) => {
   const occupations = useSelector(occupationsArray);
 
-  const { register, errors, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const { register, errors, handleSubmit } = useForm({
+    defaultValues: store,
+  });
 
   return (
     <div className={styles.PersonalInfo}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>First name</label>
-        <input
-          name="firstName"
-          ref={register({ required: true, maxLength: 20 })}
-        />
-        {errors.firstName && "First name is required"}
+        <div className={styles.Container}>
+          <div className={styles.Name}>
+            <label>First name</label>
+            <input
+              name="firstName"
+              ref={register({ required: true, maxLength: 20 })}
+            />
+            {errors.firstName && (
+              <span role="alert">First name is required</span>
+            )}
 
-        <label>Last name</label>
-        <input
-          name="lastName"
-          ref={register({ required: true, maxLength: 20 })}
-        />
-        {errors.lastName && "Last name is required"}
+            <label>Last name</label>
+            <input
+              name="lastName"
+              ref={register({ required: true, maxLength: 20 })}
+            />
+            {errors.lastName && "Last name is required"}
+          </div>
 
-        <label>Occupations</label>
-        <select name="occupations" ref={register}>
-          <option value=""></option>
-          {occupations.map(({ code, name }) => (
-            <option key={code} value={code}>
-              {name}
-            </option>
-          ))}
-        </select>
-
-        <input type="submit" value="Save" />
+          <div className={styles.Occupations}>
+            <div>
+              <label>Occupations</label>
+              <select
+                name="occupations"
+                ref={register}
+                className={styles.select}
+              >
+                <option value=""></option>
+                {occupations.map(({ code, name }) => (
+                  <option key={code} value={code}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <input type="submit" value="Save" className={styles.buttonSave} />
+          </div>
+        </div>
       </form>
     </div>
   );

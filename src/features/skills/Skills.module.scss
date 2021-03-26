@@ -1,3 +1,21 @@
-.SkillInput {
+@import "../../common/utils.module.scss";
+
+.Skills {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .SkillInput {
+    display: flex;
+
+    .removeButton {
+      background-color: $red;
+    }
+
+    .addButton {
+      background-color: $darkblue;
+    }
+  }
+  .buttonSave {
+    @include button;
+  }
 }

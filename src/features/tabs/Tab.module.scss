@@ -2,12 +2,13 @@
 
 .Tab {
   padding: 1rem;
-  margin: 1.5rem;
+  margin: 1.5rem 1.5rem 0rem 1.5rem;
   cursor: pointer;
   text-transform: uppercase;
+  color: gray;
 }
 
 .activeTab {
-  border-bottom: 1px $blue solid;
+  border-bottom: 1.5px $blue solid;
   color: $blue;
 }

@@ -1,7 +1,17 @@
 .Tabs {
-  background-color: rgb(211, 211, 211);
-}
+  width: 650px;
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 4px rgb(146, 146, 146);
 
-.Navigation {
-  display: flex;
+  .Navigation {
+    display: flex;
+    border-bottom: 1px solid rgb(180, 180, 180);
+  }
+
+  .Container {
+    width: 85%;
+    margin: auto;
+    padding-bottom: 2rem;
+  }
 }

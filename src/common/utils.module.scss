@@ -1,1 +1,11 @@
 $blue: rgb(45, 94, 255);
+$darkblue: #011892;
+$red: #ff7f7f;
+
+@mixin button {
+  align-self: flex-end;
+  background-color: $darkblue;
+  color: white;
+  text-transform: uppercase;
+  width: 120px;
+}
