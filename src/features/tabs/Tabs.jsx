@@ -43,7 +43,7 @@ const Tabs = () => {
   };
 
   return (
-    <div className={styles.Tabs}>
+    <div className={styles.Tabs} title="tabs">
       <TabsGroup>
         <Tab title="Personal Info" />
         <Tab title="Skills" />

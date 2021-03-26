@@ -1,5 +1,5 @@
 import Tabs from "../features/tabs/Tabs.jsx";
-import "./App.css";
+import "../common/App.css";
 
 function App() {
   return (

@@ -7,7 +7,7 @@ export const skillsSlice = createSlice({
   },
   reducers: {
     addSkill: (state) => {
-      let id = state.skillsArray.length;
+      let id = state.skillsArray[state.skillsArray.length - 1].id + 1;
       state.skillsArray.push({ id });
     },
     removeSkill: (state, action) => ({
