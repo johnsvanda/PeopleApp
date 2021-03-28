@@ -6,7 +6,7 @@ import Skills from "../skills/Skills.jsx";
 
 const Tabs = () => {
   const [store, setStore] = useState();
-  const [value, setActiveTab] = React.useState(0);
+  const [activeTab, setActiveTab] = React.useState(0);
 
   const saveToStore = (data) => {
     setStore({
@@ -20,7 +20,7 @@ const Tabs = () => {
       <div className={styles.TabsGroup}>
         {React.Children.map(children, (child, id) => {
           return React.cloneElement(child, {
-            value,
+            activeTab,
             id,
             setActiveTab,
           });
@@ -29,15 +29,12 @@ const Tabs = () => {
     );
   };
 
-  const TabPanel = ({ children, value, index }) => {
+  const TabPanel = ({ children, activeTab, index }) => {
     return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-      >
-        {value === index && <div className={styles.TabPanel}>{children}</div>}
+      <div role="tabpanel" hidden={activeTab !== index}>
+        {activeTab === index && (
+          <div className={styles.TabPanel}>{children}</div>
+        )}
       </div>
     );
   };
@@ -49,10 +46,10 @@ const Tabs = () => {
         <Tab title="Skills" />
       </TabsGroup>
 
-      <TabPanel value={value} index={0}>
+      <TabPanel activeTab={activeTab} index={0}>
         <PersonalInfo {...{ saveToStore, store }} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel activeTab={activeTab} index={1}>
         <Skills {...{ saveToStore, store }} />
       </TabPanel>
     </div>
